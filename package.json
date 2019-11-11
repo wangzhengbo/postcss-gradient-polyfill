@@ -1,17 +1,26 @@
 {
   "name": "postcss-gradient-polyfill",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "PostCSS plugin to creating fallback for line-gradient background.",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "format": "prettier --write .prettierrc.js colors.js index.js test/**/*.js package.json",
     "ncu": "ncu",
     "ncu:upgrade": "ncu -u",
     "test": "mocha"
   },
-  "keywords": ["postcss", "css", "linear", "gradient", "background", "polyfill", "fallback"],
+  "keywords": [
+    "postcss",
+    "css",
+    "linear",
+    "gradient",
+    "background",
+    "polyfill",
+    "fallback"
+  ],
   "author": "Wang Zhengbo",
   "license": "ISC",
   "repository": {
@@ -26,13 +35,14 @@
     "autoprefixer": "~9.7.1",
     "chai": "~4.2.0",
     "mocha": "~6.2.2",
-    "npm-check-updates": "~3.2.1"
+    "npm-check-updates": "~3.2.1",
+    "prettier": "~1.19.1"
   },
   "dependencies": {
     "css": "~2.2.4",
     "gradient-parser": "~0.1.5",
     "mix-colors": "0.0.1",
     "parse-color": "~1.0.0",
-    "postcss": "~7.0.21"  
+    "postcss": "~7.0.21"
   }
 }
