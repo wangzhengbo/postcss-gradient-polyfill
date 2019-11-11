@@ -1,6 +1,6 @@
 {
   "name": "postcss-gradient-polyfill",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PostCSS plugin to creating fallback for line-gradient background.",
   "main": "index.js",
   "directories": {
@@ -12,8 +12,16 @@
     "test": "mocha"
   },
   "keywords": ["postcss", "css", "linear", "gradient", "background", "polyfill", "fallback"],
-  "author": "",
+  "author": "Wang Zhengbo",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangzhengbo/postcss-gradient-polyfill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wangzhengbo/postcss-gradient-polyfill/issues"
+  },
+  "homepage": "https://github.com/wangzhengbo/postcss-gradient-polyfill",
   "devDependencies": {
     "autoprefixer": "~9.7.1",
     "chai": "~4.2.0",
