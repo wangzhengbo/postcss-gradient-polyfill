@@ -12,7 +12,6 @@ var safeParseColor = function(decl, result) {
 }
 
 module.exports = postcss.plugin('postcss-gradient-polyfill', function(options) {
-  console.log('options', options)
   options = options || {}
   var fallback = options.fallback || 'mixed'
 
