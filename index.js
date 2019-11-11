@@ -11,7 +11,11 @@ var safeParseColor = function(decl, result) {
   return []
 }
 
-module.exports = postcss.plugin('postcss-gradient-polyfill', function() {
+module.exports = postcss.plugin('postcss-gradient-polyfill', function(options) {
+  console.log('options', options)
+  options = options || {}
+  var fallback = options.fallback || 'mixed'
+
   return function(css, result) {
     css.walkRules(function(rule) {
       var defaultBackground = undefined
@@ -32,25 +36,31 @@ module.exports = postcss.plugin('postcss-gradient-polyfill', function() {
           defaultBackground = decl.value
           return
         }
-        var mixedColor
-        var reduce = Array.prototype.reduce
-        try {
-          Array.prototype.reduce = function() {
-            const args = Array.from(arguments)
-            if (args.length === 1) {
-              args.push(0)
+        var fallbackColor
+        if (fallback === 'start') {
+          fallbackColor = colors[0]
+        } else if (fallback === 'end') {
+          fallbackColor = colors[colors.length - 1]
+        } else {
+          var reduce = Array.prototype.reduce
+          try {
+            Array.prototype.reduce = function() {
+              const args = Array.from(arguments)
+              if (args.length === 1) {
+                args.push(0)
+              }
+              return reduce.apply(this, args)
             }
-            return reduce.apply(this, args)
+            fallbackColor = mixColors(colors)
+          } finally {
+            Array.prototype.reduce = reduce
           }
-          mixedColor = mixColors(colors)
-        } finally {
-          Array.prototype.reduce = reduce
         }
         ;(gradientDecl || decl).cloneBefore({
           prop: 'background',
-          value: mixedColor
+          value: fallbackColor
         })
-        defaultBackground = mixedColor
+        defaultBackground = fallbackColor
       })
     })
   }

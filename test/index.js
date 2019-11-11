@@ -6,14 +6,41 @@ var plugin = require('../')
 
 describe('postcss-color', function() {
   describe('unit test', function() {
-    var test = function(input, output) {
-      expect(postcss(plugin).process(input).css).to.eql(output)
+    var test = function(input, output, options) {
+      expect(postcss(plugin(options)).process(input).css).to.eql(output)
     }
 
     it('use median color', function() {
       test(
         'a{ background: linear-gradient(#000, #fff);}',
         'a{ background: #808080; background: linear-gradient(#000, #fff);}'
+      )
+    })
+    it('use start color', function() {
+      test(
+        'a{ background: linear-gradient(#000, #fff);}',
+        'a{ background: #000000; background: linear-gradient(#000, #fff);}',
+        {
+          fallback: 'start'
+        }
+      )
+    })
+    it('use end color', function() {
+      test(
+        'a{ background: linear-gradient(#000, #fff);}',
+        'a{ background: #ffffff; background: linear-gradient(#000, #fff);}',
+        {
+          fallback: 'end'
+        }
+      )
+    })
+    it('default use median color', function() {
+      test(
+        'a{ background: linear-gradient(#000, #fff);}',
+        'a{ background: #808080; background: linear-gradient(#000, #fff);}',
+        {
+          fallback: 'xxx'
+        }
       )
     })
     it('not overwrite when exists polyfill', function() {

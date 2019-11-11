@@ -1,6 +1,6 @@
 {
   "name": "postcss-gradient-polyfill",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "PostCSS plugin to creating fallback for line-gradient background.",
   "main": "index.js",
   "directories": {
