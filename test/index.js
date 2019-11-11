@@ -34,7 +34,7 @@ describe('postcss-color', function () {
       }
       test1(
         'a{ background: linear-gradient(#000, #fff);}', 
-        'a{ background: #808080; background: -webkit-linear-gradient(#000, #fff); background: linear-gradient(#000, #fff);}'
+        'a{ background: #808080; background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#fff)); background: linear-gradient(#000, #fff);}'
       );
     })
     it('[autoprefixer, plugin]', function(){
@@ -45,7 +45,7 @@ describe('postcss-color', function () {
       }
       test2(
         'a{ background: linear-gradient(#000, #fff);}', 
-        'a{ background: #808080; background: -webkit-linear-gradient(#000, #fff); background: linear-gradient(#000, #fff);}'
+        'a{ background: #808080; background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#fff)); background: linear-gradient(#000, #fff);}'
       );
     })
   })

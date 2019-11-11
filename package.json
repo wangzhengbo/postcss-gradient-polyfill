@@ -1,28 +1,30 @@
 {
-  "name": "postcss-regacy-background",
+  "name": "postcss-gradient-polyfill",
   "version": "1.0.0",
-  "description": "",
+  "description": "PostCSS plugin to creating fallback for line-gradient background.",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "ncu": "ncu",
+    "ncu:upgrade": "ncu -u",
     "test": "mocha"
   },
-  "keywords": [],
+  "keywords": ["postcss", "css", "linear", "gradient", "background", "polyfill", "fallback"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^5.2.0",
-    "chai": "^3.0.0",
-    "mocha": "^2.2.5"
+    "autoprefixer": "~9.7.1",
+    "chai": "~4.2.0",
+    "mocha": "~6.2.2",
+    "npm-check-updates": "~3.2.1"
   },
   "dependencies": {
-    "css": "^2.2.0",
-    "d3": "^3.5.5",
-    "gradient-parser": "^0.1.5",
+    "css": "~2.2.4",
+    "gradient-parser": "~0.1.5",
     "mix-colors": "0.0.1",
-    "parse-color": "^1.0.0",
-    "postcss": "^4.0.0"
+    "parse-color": "~1.0.0",
+    "postcss": "~7.0.21"  
   }
 }

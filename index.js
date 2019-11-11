@@ -13,9 +13,14 @@ var safeParseColor = function(decl, result){
 
 module.exports = postcss.plugin('postcss-gradient-polyfill', function () {
   return function (css, result) {
-    css.eachRule(function (rule) {
+    css.walkRules(function (rule) {
       var defaultBackground = undefined
-      rule.eachDecl('background', function (decl) {
+      var gradientDecl = undefined
+      rule.walkDecls('background', function (decl) {
+        if (decl.value.startsWith('-')) { // ignore -webkit-gradient
+          gradientDecl = decl
+          return
+        }
         if(defaultBackground){ // avoid duplicate
           return
         }
@@ -25,8 +30,21 @@ module.exports = postcss.plugin('postcss-gradient-polyfill', function () {
           defaultBackground = colors[0]
           return
         }
-        var mixedColor = mixColors(colors)
-        decl.cloneBefore({
+        var mixedColor
+        var reduce = Array.prototype.reduce
+        try {
+          Array.prototype.reduce = function() {
+            const args = Array.from(arguments)
+            if (args.length === 1) {
+              args.push(0)
+            }
+            return reduce.apply(this, args)
+          }
+          mixedColor = mixColors(colors)
+        } finally {
+          Array.prototype.reduce = reduce
+        }
+        (gradientDecl || decl).cloneBefore({
           prop: 'background',
           value: mixedColor
         })
