@@ -22,6 +22,12 @@ describe('postcss-color', function() {
         'a{ background: #cccccc; background: linear-gradient(#000, #fff);}'
       )
     })
+    it('not overwrite when no linear gradient', function() {
+      test(
+        'body.no-webp .logo { background: url(/logo.png); background: red; border: url(/logo.png);}',
+        'body.no-webp .logo { background: url(/logo.png); background: red; border: url(/logo.png);}'
+      )
+    })
   })
   describe('with autoprefixer', function() {
     it('[plugin , autoprefixer]', function() {

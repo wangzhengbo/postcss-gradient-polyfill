@@ -28,8 +28,8 @@ module.exports = postcss.plugin('postcss-gradient-polyfill', function() {
         }
         var colors = safeParseColor(decl, result)
 
-        if (colors.length === 1) {
-          defaultBackground = colors[0]
+        if (colors.length <= 1) {
+          defaultBackground = decl.value
           return
         }
         var mixedColor
